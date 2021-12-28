@@ -37,13 +37,33 @@ namespace Northwind.Test.Features
 		[When(@"I get the forecast for yesterday")]
 		public void I_get_the_forecast_for_yesterday()
 		{
-			_forecast = _weather.ForecastFor(DateTime.Now.AddDays(-1));
+            try
+            {
+				_forecast = _weather.ForecastFor(DateTime.Now.AddDays(-1));
+            }
+            catch (ArgumentException exception)
+            {
+				_serviceException = exception;
+            }
 		}
 
-		[Then(@"the service should throw an invalid argument exception")]
+		[Then(@"the service should throw an argument exception")]
 		public void The_service_should_throw_an_argument_exception()
 		{
 			Assert.IsType<ArgumentException>(_serviceException);
+		}
+
+		[When(@"the temperature F is (\d+)")]
+		public void The_temperature_F_is(int temperature)
+        {
+			_forecast = _weather.ForecastWithSetTemperature(temperature);
+			Assert.Equal(temperature, _forecast.TemperatureF);
+        }
+
+		[Then(@"the forecast summary should be (Freezing|Bracing|Chilly|Cool|Mild|Warm|Balmy|Hot|Sweltering|Scorching)")]
+		public void Then_the_forecast_summary_should_be(string summary)
+        {
+			Assert.True(String.Equals(_forecast.Summary, summary));
 		}
 	}
 }

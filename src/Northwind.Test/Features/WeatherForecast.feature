@@ -10,3 +10,8 @@ Scenario: Cannot forecast the past
 	Given the weather forecast
 	When I get the forecast for yesterday
 	Then the service should throw an argument exception
+
+Scenario: 70F is Freezing
+	Given the weather forecast
+	When the temperature F is 70
+	Then the forecast summary should be Mild
