@@ -3,5 +3,5 @@ Feature: Increment the counter
 
 Scenario: Basic increment scenario
     Given I am on the counter page
-    When I click on the increment button 21 times
-    Then The counter should show "21"
+    When I click the increment button 19 times
+    Then The counter should show an "19"

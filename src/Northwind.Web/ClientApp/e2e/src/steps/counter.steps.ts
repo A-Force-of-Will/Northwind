@@ -13,7 +13,7 @@ Given("I am on the counter page", async () => {
   await page.navigateToCounter();
 });
 
-When("I click on the increment button {int} times", async (x: number) => {
+When("I click the increment button {int} times", async (x: number) => {
   // Click on the increment button x times.
   const incrementButton = element(by.id("increment"));
   for (let index = 0; index < x; index++) {
@@ -21,7 +21,7 @@ When("I click on the increment button {int} times", async (x: number) => {
   }
 });
 
-Then("The counter should show {string}", async (x: string) => {
+Then("The counter should show an {string}", async (x: string) => {
   // Expect that we get the correct value showing
   expect(await element(by.id("counter")).getText()).to.equal(x);
 });

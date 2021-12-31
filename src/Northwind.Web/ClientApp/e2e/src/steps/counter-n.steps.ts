@@ -9,12 +9,17 @@ Before(() => {
   page = new AppPage();
 });
 
-Given("I am on the counter-two page", async () => {
-  await page.navigateToCounterTwo();
+Given("I am on the counter-n page", async () => {
+  await page.navigateToCounterN();
 });
 
+When("I set the increment number to {int}", async (x: number) => {
+    
+  const customNumber = element(by.id("input"));
+  element(by.id("input")).getText.apply(x);
+});
 
-When("I click on the increment button {int} times", async (x: number) => {
+When("I click on the increment {int} times", async (x: number) => {
     const incrementButton = element(by.id("increment"));
 
     for (var i = 0; i < x; i++) {
@@ -22,7 +27,7 @@ When("I click on the increment button {int} times", async (x: number) => {
     }
 });
 
-Then("The counter should show {string}", async (x: string) => {
+Then("The counter should show {string}.", async (x: string) => {
 
   expect(await element(by.id("counter")).getText()).to.equal(x);
 });
