@@ -5,6 +5,6 @@
 <p aria-live="polite">Current count: <strong id="counter">{{ currentCount }}</strong></p>
 
 <label for="input">Input a number to increment by: </label>
-<input #inputnumber type="number" id="input" />
+<input #inputnumber type="number" id="input" value="4" />
 
 <button id="increment" class="btn btn-primary" (click)="incrementCounter(inputnumber.value)">Increment</button>

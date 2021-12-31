@@ -14,9 +14,9 @@ Given("I am on the counter-n page", async () => {
 });
 
 When("I set the increment number to {int}", async (x: number) => {
-    
   const customNumber = element(by.id("input"));
-  element(by.id("input")).getText.apply(x);
+
+  customNumber.getText.apply(x);
 });
 
 When("I click on the increment {int} times", async (x: number) => {
